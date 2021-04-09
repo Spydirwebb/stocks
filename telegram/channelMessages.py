@@ -86,6 +86,7 @@ with client:
 
 f = open('channel_messages.json',)
 data = json.load(f)
+tickers = []
 
 for i in range(0, len(data)):
     val = data[i]
@@ -96,3 +97,6 @@ for i in range(0, len(data)):
     if val is not None:
         val = data[i]['media']['webpage']['description']
         print(val)
+        tickers.append(val[:5])
+
+print(tickers)
