@@ -10,6 +10,8 @@ from telethon.tl.types import (
 )
 
 import create_client
+import parse_data
+from ..finnhub import get_price
 
 #some functions to parse json date
 class DateTimeEncoder(json.JSONEncoder):
@@ -26,7 +28,7 @@ class DateTimeEncoder(json.JSONEncoder):
 #create client
 client, phone = create_client.createClient()
 
-async def main (phone):
+async def  (phone):
     await client.start()
     print("Client Created")
 
@@ -83,20 +85,3 @@ async def main (phone):
 
 with client:
     client.loop.run_until_complete(main(phone))
-
-f = open('channel_messages.json',)
-data = json.load(f)
-tickers = []
-
-for i in range(0, len(data)):
-    val = data[i]
-    if val is not None:
-        val = data[i]["media"]
-    if val is not None:
-        val = data[i]["media"]["webpage"]
-    if val is not None:
-        val = data[i]['media']['webpage']['description']
-        print(val)
-        tickers.append(val[:5])
-
-print(tickers)
