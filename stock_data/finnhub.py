@@ -12,5 +12,3 @@ def get_price(ticker):
     """
 
     return r.json()["c"]
-
-print(get_price("AAPL"))
