@@ -28,7 +28,11 @@ class DateTimeEncoder(json.JSONEncoder):
 #create client
 client, phone = create_client.createClient()
 
+<<<<<<< HEAD
 async def get_telegram_data (phone):
+=======
+async def  (phone):
+>>>>>>> ffed30efedfd4a9e57acbb78ce95d098ff25997d
     await client.start()
     print("Client Created")
 
@@ -84,4 +88,8 @@ async def get_telegram_data (phone):
         json.dump(all_messages, outfile, indent=4,cls=DateTimeEncoder)
 
 with client:
+<<<<<<< HEAD
     client.loop.run_until_complete(get_telegram_d(phone))
+=======
+    client.loop.run_until_complete(main(phone))
+>>>>>>> ffed30efedfd4a9e57acbb78ce95d098ff25997d
