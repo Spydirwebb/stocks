@@ -9,9 +9,7 @@ from telethon.tl.types import (
     PeerChannel
 )
 
-import telegram.create_client as create_client
-import telegram.parse_data as parse_data
-import stock_data.finnhub as finnhub
+#import create_client
 
 #some functions to parse json date
 class DateTimeEncoder(json.JSONEncoder):
@@ -26,14 +24,15 @@ class DateTimeEncoder(json.JSONEncoder):
 
 
 #create client
-client, phone = create_client.createClient()
+#client, phone = create_client.create_client()
 
-async def main (phone):
-    await client.start()
-    print("Client Created")
+async def get_telegram_data (client, phone):
+    print("hello form get_telegram_data")
+    #await client.start()
+    #print("Client Created")
 
     #ensure authorized
-    if await client.is_user_authorized() == False:
+    """if await client.is_user_authorized() == False:
         await client.send_code_request(phone)
         try:
             await client.sign_in(phone, input("Enter the code: "))
@@ -41,6 +40,7 @@ async def main (phone):
             await client.sign_in(password=input("Password: "))
 
     me = await client.get_me()
+    """
 
     #user_input_channel = input("Enter entity(telegram URL or entity id): ")
 
@@ -83,11 +83,5 @@ async def main (phone):
     with open('channel_messages.json', 'w') as outfile:
         json.dump(all_messages, outfile, indent=4,cls=DateTimeEncoder)
 
-with client:
-    client.loop.run_until_complete(main(phone))
-
-tickers = parse_data.parse_data()
-
-for ticker in tickers:
-    price=finnhub.get_price(ticker)
-    print(f"ticker:{ticker}, price: {price}")
+#with client:
+    #client.loop.run_until_complete(get_telegram_data(phone))

@@ -2,7 +2,7 @@ import configparser
 
 from telethon import TelegramClient
 
-def createClient():
+def create_client():
     #reading configs
     config = configparser.ConfigParser()
     config.read("config.ini")

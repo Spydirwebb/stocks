@@ -11,20 +11,28 @@ def parse_data():
     for i in range(0, len(data)):
         val = data[i]
         if val is not None:
-            val = data[i]["media"]
+            try:
+                val = data[i]["media"]
+            except KeyError:
+                continue 
         if val is not None:
-            val = data[i]["media"]["webpage"]
+            try:
+                val = data[i]["media"]["webpage"]
+            except KeyError:
+                continue 
         if val is not None:
-            val = data[i]['media']['webpage']['description']
+            try:
+                val = data[i]['media']['webpage']['description']
+            except KeyError:
+                continue     
             print(val)
             start = val.find("$")
             end = val[start:].find(" ")
             tckr = val[start:end]
             tickers.append(tckr)
-    print(f"ticker: {tickers}")
     for i in range(0, len(tickers)):
         ticker = tickers[i]
-        if(ticker!=""):
+        if(ticker!="" and ticker !=" "):
             parsed_ticker = ticker[1: len(ticker)]
             parsed_tickers.append(parsed_ticker)
     
